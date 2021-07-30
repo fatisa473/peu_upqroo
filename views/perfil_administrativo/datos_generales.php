@@ -72,7 +72,7 @@
 									<ul class="list-unstyled full-box dashboard-sideBar-Menu menu-menu">
 				
 										<li class="seleccionar">
-											<a href="<?php echo URL.'perfil_docente';?>"> 
+											<a href="<?php echo URL.'perfil_administrativo';?>"> 
 												<i class="zmdi zmdi-account"></i> Perfiles
 											</a>
 										</li>
@@ -131,10 +131,10 @@
 											<a href="#!"><div class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></div></a>
 										</li>
 										<li class="li-left indice-navegacion">
-											<a href="<?php echo URL.'home/docente';?>"><div class="op-navegador"><div class="navegadornombre">Inicio</div><div class="navegadorflecha"><i class="zmdi zmdi-chevron-right"></i></div></div></a>
+											<a href="<?php echo URL.'home/administrativo';?>"><div class="op-navegador"><div class="navegadornombre">Inicio</div><div class="navegadorflecha"><i class="zmdi zmdi-chevron-right"></i></div></div></a>
 										</li>
 										<li class="li-left indice-navegacion">
-											<a href="<?php echo URL.'perfil_docente';?>"><div class="op-navegador"><div class="navegadornombre">Perfil</div><div class="navegadorflecha"><i class="zmdi zmdi-chevron-right"></i></div></div></a>
+											<a href="<?php echo URL.'perfil_administrativo';?>"><div class="op-navegador"><div class="navegadornombre">Perfil</div><div class="navegadorflecha"><i class="zmdi zmdi-chevron-right"></i></div></div></a>
 										</li>
 										<li class="li-left indice-navegacion">
 											<a href="#!"><div class="op-navegador"><div class="navegadornombre">Datos Generales</div></div></a>
@@ -146,7 +146,7 @@
 											<a href="#!"><div><i class="zmdi zmdi-menu"></i></div></a>
 											<ul>
 												<li>
-													<a href="<?php echo URL;?>perfil_docente/datos_generales_modificar"><div class=espacio><i class="zmdi zmdi-edit"></i> Editar</div></a>
+													<a href="<?php echo URL;?>perfil_administrativo/datos_generales_modificar"><div class=espacio><i class="zmdi zmdi-edit"></i> Editar</div></a>
 												</li>
 											</ul>
 										</li>
@@ -176,73 +176,68 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label>Numero de control</label>
-                                        <input type="text" class="form-control" disabled value="<?php echo $this->resultado_docente['Num_Control'] ;?>">
+                                        <input type="text" class="form-control" disabled value="<?php echo $this->resultado_administrativo['Num_Control'];?>">
                                     </div>
-                                    <div class="form-group2 col-6">
+                                    <div class=" col-6">
                                         <label>Nombre</label>
-                                        <input type="text" class="form-control" disabled value="<?php echo $this->resultado_docente['Nombres'] ;?>">
+                                        <input type="text" class="form-control" disabled value="<?php echo $this->resultado_administrativo['Nombres'];?>">
                                     </div>
                                     <div class="col-6">
                                         <label>Apellido paterno</label>
-                                        <input type="text" class="form-control" disabled value="<?php echo $this->resultado_docente['Apellido_paterno'] ;?>">
+                                        <input type="text" class="form-control" disabled value="<?php echo $this->resultado_administrativo['Apellido_paterno'];?>">
                                     </div>
                                     <div class="col-6">
                                         <label>Apellido materno</label>
-                                        <input type="text" class="form-control" disabled value="<?php echo $this->resultado_docente['Apellido_materno'] ;?>">
+                                        <input type="text" class="form-control" disabled value="<?php echo $this->resultado_administrativo['Apellido_materno'];?>">
+                                    </div>
+                                    <div class="col-6">
+                                        <label>Carrera</label>
+                                        <input type="text" class="form-control" disabled
+                                        value="<?php echo $this->resultado_carrera['Nom_Carrera'];?>">
                                     </div>
                                     <div class="col-6">
                                         <label>Estatus</label>
-                                        <input type="text" class="form-control" disabled value="<?php echo $this->resultado_estatus['Nombre'] ;?>">
-                                    </div>
-                                    <div class="col-6">
-                                        <label>Periodo actual</label>
-                                        <input type="text" class="form-control" disabled value="<?php echo $this->resultado_descripcion_periodo_actual['Descripcion'] . " " . $this->resultado_id_descripcion_periodo_actual['Anio']; ?>">
+                                        <input type="text" class="form-control" disabled value="<?php echo $this->resultado_estatus['Nombre'];?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4 imageform">
-                                <div>
-                                    <img src="<?php echo URL; ?>public/assets/fotos/<?php echo $this->resultado_docente['Imagen'] ;?>"
-                                        class="rounded-circle z-depth-1-half avatar-pic image-fluid" width="200"
-                                        alt="example placeholder avatar">
-                                </div>
+                                <img src="<?php echo URL;?>public/assets/fotos/<?php echo $this->resultado_administrativo['Imagen'];?>"
+                                    class="rounded-circle z-depth-1-half avatar-pic image-fluid" width="200"
+                                    alt="example placeholder avatar">
                             </div>
                             <div class="col-6">
                                 <label>Fecha de nacimiento</label>
-                                <input type="date" class="form-control" disabled value="<?php echo $this->resultado_generales['Fecha_Nac'] ;?>">
-                            </div>
+                                <input type="date" class="form-control" disabled  value="<?php echo $this->resultado_generales['Fecha_Nac'];?>">
+                            </div>                            
                             <div class="col-6">
                                 <label>Pais</label>
-                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_pais['Nombre'] ;?>">
+                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_pais['Nombre'];?>">
                             </div>
                             <div class="col-6">
                                 <label>Estado</label>
-                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_estado['Nombre'] ;?>">
+                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_estado['Nombre'];?>">
                             </div>
                             <div class="col-6">
                                 <label>Municipio</label>
-                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_municipio['Nombre'] ;?>">
+                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_municipio['Nombre'];?>">
                             </div>
                             <div class="col-6">
                                 <label>CURP</label>
-                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_generales['CURP'] ;?>">
+                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_generales['CURP'];?>">
                             </div>
                             <div class="col-6">
                                 <label>Estado civil</label>
                                 <input type="text" class="form-control" disabled
-                                value="<?php echo $this->resultado_generales['Estado_Civil'] ;?>">
+                                    value="<?php echo $this->resultado_generales['Estado_Civil'];?>">
                             </div>
                             <div class="col-6">
                                 <label>RFC</label>
-                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_generales['RFC'] ;?>">
-                            </div>
-                            <div class="col-6">
-                                <label>Grado</label>
-                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_grado['Nombre'] ;?>">
+                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_generales['RFC'];?>">
                             </div>
                             <div class="col-6">
                                 <label>Genero</label>
-                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_generales['Genero'] ;?>">
+                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_generales['Genero'];?>">
                             </div>
                         </div>
                     </div>
@@ -276,3 +271,4 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 </html>
+

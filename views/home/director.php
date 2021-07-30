@@ -35,8 +35,8 @@
 					</div>
 					<div class="col-9 col-sm-6 col-md-4 seccion-datos">
 						<div class="datos-usuario datos-orientacion">
-							<h2 class="nombre-usuario">Manuel Alejandro Flores Barrera</h2>
-							<h5 class="tipo-usuario">Coordinador de carrera</h5>
+						<h2 class="nombre-usuario"><?php echo $session->get("nombre"); ?></h2>
+							<h5 class="tipo-usuario"><?php echo $session->get("tipo"); ?></h5>
 						</div>
 					</div>
 				</div>
@@ -61,7 +61,7 @@
 									<ul class="list-unstyled full-box dashboard-sideBar-Menu menu-menu">
 				
 										<li class="seleccionar">
-											<a href="#"> 
+											<a href="<?php echo URL.'perfil_director';?>"> 
 												<i class="zmdi zmdi-account"></i> Perfiles
 											</a>
 										</li>

@@ -453,12 +453,6 @@ class Perfil_Administrador_Resultados extends Controller{
                 $this->cargar_contacto($params[0]);
                 $this->cargar_documentos($params[0]);
 
-                $carreras = $consults_administrador->getCarreras();
-                $paises = $consults_administrador->getPaises();
-                $estados = $consults_administrador->getEstados();
-                $municipios = $consults_administrador->getMunicipios();
-                $estatus = $consults_administrador->getEstatus();
-
                 $this->view->usuario = $params[0];
 
                 $this->view->render('perfil_administrador_resultados/todo_director');

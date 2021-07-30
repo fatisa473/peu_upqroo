@@ -1,5 +1,3 @@
-let url = "http://localhost/peu_upqroo/";
-
 
 $(document).ready(function() {
     $('#sidebarCollapse').on('click', function() {
@@ -12,6 +10,7 @@ $(document).ready(function() {
 
 /*buscador administrativo */
 function buscar_administrativo(){
+  const url = "http://localhost/peu_upqroo/";
   let buscar = document.getElementById("buscar").value;
   let perfil = document.getElementById("perfil").value;
   let carrera = document.getElementById("carrera").value;
@@ -22,18 +21,21 @@ function buscar_administrativo(){
 
 
 function definirSeccionAlumno(matricula,i){
+  const url = "http://localhost/peu_upqroo/";
   let seccionSeleccionado = document.getElementById('seccion'+ i).value;
   console.log(seccionSeleccionado);
   location.href= url +"perfil_administrativo_resultados/alumno/" + matricula + "/" + seccionSeleccionado;
 }
 
 function definirSeccionDirector(numcontrol,i){
+  const url = "http://localhost/peu_upqroo/";
   let seccionSeleccionado = document.getElementById('seccion'+i).value;
   console.log(seccionSeleccionado);
   location.href= url + "perfil_administrativo_resultados/director/" + numcontrol + "/" + seccionSeleccionado;
 }
 
 function definirSeccionDocente(numcontrol,i){
+  const url = "http://localhost/peu_upqroo/";
   let seccionSeleccionado = document.getElementById('seccion'+i).value;
   console.log(seccionSeleccionado);
   location.href= url +"perfil_administrativo_resultados/docente/" + numcontrol + "/" + seccionSeleccionado;
@@ -44,6 +46,7 @@ function definirSeccionDocente(numcontrol,i){
 /*buscador administrador */
 
 function buscar_administrador(){
+  const url = "http://localhost/peu_upqroo/";
   let buscar = document.getElementById("buscar").value;
   let perfil = document.getElementById("perfil").value;
   let carrera = document.getElementById("carrera").value;
@@ -53,24 +56,28 @@ function buscar_administrador(){
 }
 
 function definirSeccionAlumnoAdministrador(matricula,i){
+  const url = "http://localhost/peu_upqroo/";
   let seccionSeleccionado = document.getElementById('seccion'+ i).value;
   console.log(seccionSeleccionado);
   location.href= url +"perfil_administrador_resultados/alumno/" + matricula + "/" + seccionSeleccionado;
 }
 
 function definirSeccionDirectorAdministrador(numcontrol,i){
+  const url = "http://localhost/peu_upqroo/";
   let seccionSeleccionado = document.getElementById('seccion'+i).value;
   console.log(seccionSeleccionado);
   location.href= url + "perfil_administrador_resultados/director/" + numcontrol + "/" + seccionSeleccionado;
 }
 
 function definirSeccionDocenteAdministrador(numcontrol,i){
+  const url = "http://localhost/peu_upqroo/";
   let seccionSeleccionado = document.getElementById('seccion'+i).value;
   console.log(seccionSeleccionado);
   location.href= url +"perfil_administrador_resultados/docente/" + numcontrol + "/" + seccionSeleccionado;
 }
 
 function definirSeccionAdministrativoAdministrador(numcontrol,i){
+  const url = "http://localhost/peu_upqroo/";
   let seccionSeleccionado = document.getElementById('seccion'+i).value;
   console.log(seccionSeleccionado);
   location.href= url +"perfil_administrador_resultados/administrativo/" + numcontrol + "/" + seccionSeleccionado;

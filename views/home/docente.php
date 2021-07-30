@@ -5,7 +5,7 @@
 <html lang="es">
 
 <head>
-	<title>PEU</title>
+	<title>Home</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="<?php echo URL;?>public/css/main.css">
@@ -35,8 +35,8 @@
 					</div>
 					<div class="col-9 col-sm-6 col-md-4 seccion-datos">
 						<div class="datos-usuario datos-orientacion">
-							<h2 class="nombre-usuario">Manuel Alejandro Flores Barrera</h2>
-							<h5 class="tipo-usuario">Coordinador de carrera</h5>
+							<h2 class="nombre-usuario"><?php echo $session->get("nombre"); ?></h2>
+							<h5 class="tipo-usuario"><?php echo $session->get("tipo"); ?></h5>
 						</div>
 					</div>
 				</div>
