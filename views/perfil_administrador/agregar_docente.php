@@ -159,7 +159,7 @@
 						<div class="contenido">
                             <div class="contenido-box">
                 <!-- Informacion - Inicio -->   
-                <form class="container mt-3">
+                <form class="container mt-3"  action="<?php echo URL;?>perfil_administrador/nuevo_docente" method="POST" enctype="multipart/form-control">
                 <div class="row rowgreen"></div>
                 <div class="row rowhite">
                     <div class="col">                    
@@ -175,24 +175,32 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label>Numero de control</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="num_control" required class="form-control">
                                     </div>
                                     <div class="col-6">
                                         <label>Nombres</label>
-                                        <input type="text" class="form-control" >
+                                        <input type="text" name="nombres" required class="form-control" >
                                     </div>
                                     <div class="col-6">
                                         <label>Apellido paterno</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text"  name="ap_P" required class="form-control">
                                     </div>
                                     <div class="col-6">
                                         <label>Apellido materno</label>
-                                        <input type="text" class="form-control" >
+                                        <input type="text"  name="ap_M" required class="form-control" >
                                     </div>
                                     <div class="col-6">
                                         <label>Estatus</label>
-                                        <select class="form-control"name="" id="">
-                                            <option value="">Estatus</option>
+                                        <select name="estatus" id="" class="form-control">
+                                            <?php
+                                                if($this->estatus){
+                                                    foreach($this->estatus as $i){
+                                                            ?>
+                                                                <option value="<?Php echo $i['ID_Estatus_Perfil']; ?>"><?Php echo $i['Nombre']; ?></option>
+                                                            <?php 
+                                                    }
+                                                }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -205,15 +213,31 @@
                             </div>
                             <div class="col-6">
                                 <label>Grado</label>
-                                <select class="form-control"name="" id="">
-                                    <option value="">Planes</option>
+                                <select name="grado" id="" class="form-control">
+                                    <?php
+                                        if($this->grados){
+                                            foreach($this->grados as $i){
+                                                    ?>
+                                                        <option value="<?Php echo $i['ID_Grado']; ?>"><?Php echo $i['Nombre']; ?></option>
+                                                    <?php 
+                                            }
+                                        }
+                                    ?>
                                 </select>
                             </div>
                             <div class="col-6">
                                 <label>Periodo</label>
-                                <select class="form-control"name="" id="">
-                                    <option value="">Periodos</option>
-                                </select>
+                                <select name="periodo_ingreso" id="" class="form-control">
+                                            <?php
+                                                if($this->periodos){
+                                                    foreach($this->periodos as $i){
+                                                            ?>
+                                                                <option value="<?Php echo $i['ID_Periodo']; ?>"><?Php echo $i['Descripcion']. " ".$i['Anio']; ?></option>
+                                                            <?php 
+                                                    }
+                                                }
+                                            ?>
+                                        </select> 
                             </div>
                         </div>
                         <br>
@@ -227,46 +251,87 @@
                         <div class="row formcss">      
                             <div class="col-6">
                                 <label>Fecha de nacimiento</label>
-                                <input type="date" class="form-control">
+                                <input type="date" name="nacimiento" required class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Pais</label>
-                                <select class="form-control"name="" id="">
-                                    <option value="">Pais</option>
+                                <select name="paises" id="" class="form-control">
+                                    <?php
+                                        if($this->paises){
+                                            foreach($this->paises as $i){
+
+                                                    ?>
+                                                        <option value="<?Php echo $i['ID_Pais']; ?>"><?Php echo $i['Nombre']; ?></option>
+                                                    <?php 
+                                            }
+                                        }
+                                    ?>
                                 </select>
                             </div>
                             <div class="col-6">
                                 <label>Estado</label>
-                                <select class="form-control"name="" id="">
-                                    <option value="">Estado</option>
+                                <select name="estados" id="" class="form-control">
+                                    <?php
+                                        if($this->estados){
+                                            foreach($this->estados as $i){
+                                                    ?>
+                                                        <option value="<?Php echo $i['ID_Estado']; ?>"><?Php echo $i['Nombre']; ?></option>
+                                                    <?php 
+                                            }
+                                        }
+                                    ?>
                                 </select>
                             </div>
                             <div class="col-6">
                                 <label>Municipio</label>
-                                <select class="form-control"name="" id="">
-                                    <option value="">Municipio</option>
-                                </select>
+                                <select name="municipios" id="" class="form-control">
+                                    <?php
+                                        if($this->municipios){
+                                            foreach($this->municipios as $i){
+                                                    ?>
+                                                        <option value="<?Php echo $i['ID_Municipio']; ?>"><?Php echo $i['Nombre']; ?></option>
+                                                    <?php 
+                                            }
+                                        }
+                                    ?>
+                                </select> 
                             </div>
                             <div class="col-6">
                                 <label>CURP</label>
-                                <input type="text" class="form-control" >
+                                <input type="text"  name="curp" required class="form-control" >
                             </div>
 
                             <div class="col-6">
                                 <label>Estado civil</label>
-                                <select class="form-control"name="" id="">
-                                    <option value="">Estado civil</option>
-                                </select>
+                                <select name="estado_civil" id="" class="form-control">
+                                        <?php
+                                            $array_estados_civil = ["SOLTERO","CASADO","DIVORCIADO","SEPARACION EN PROCESO JUDICIAL", "VIUDO","CONCUBINATO"];
+
+                                            for ($i=0; $i < count($array_estados_civil); $i++) { 
+                                                    ?>
+                                                        <option value="<?Php echo $array_estados_civil[$i]; ?>"><?Php echo $array_estados_civil[$i]; ?></option>
+                                                    <?php
+                                            }
+                                        ?>
+                                    </select>
                             </div>
                             <div class="col-6">
                                 <label>RFC</label>
-                                <input type="text" class="form-control">
+                                <input type="text"name="rfc" required class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Genero</label>
-                                <select class="form-control"name="" id="">
-                                    <option value="">Genero</option>
-                                </select>
+                                <select name="genero" id="" class="form-control">
+                                        <?php
+                                            $array_generos = ["HOMBRE","MUJER","NO ESPECIFICADO"];
+
+                                            for ($i=0; $i < count($array_generos); $i++) { 
+                                                    ?>
+                                                        <option value="<?Php echo $array_generos[$i]; ?>"><?Php echo $array_generos[$i]; ?></option>
+                                                    <?php
+                                            }
+                                        ?>
+                                    </select>
                             </div>
                         </div>   
                         <br>
@@ -280,23 +345,23 @@
                         <div class="row formcss">
                             <div class="col-12">
                                 <label>Dirección</label>
-                                <input type="text" class="form-control">
+                                <input type="text"  name="direccion" required class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Telefono fijo</label>
-                                <input type="text" class="form-control">
+                                <input type="text"  minlength="10" maxlength="10" pattern="[0-9]+" required  name="contacto_tel_domi" class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Celular</label>
-                                <input type="text" class="form-control">
+                                <input type="text" minlength="10" maxlength="10" pattern="[0-9]+" required name="contacto_cel" class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Nombre de emergencia</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="nombre_emergencia" required class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Numero de emergencia</label>
-                                <input type="text" class="form-control">
+                                <input type="text" minlength="10" maxlength="10" pattern="[0-9]+" required  name="contacto_tel_eme" class="form-control">
                             </div>                                  
                         </div>  
                         <br>
@@ -310,23 +375,37 @@
                         <div class="row formcss">
                             <div class="col-6">
                                 <label>Empresa afiliada</label>
-                                <input type="text" class="form-control">
+                                <input type="text"  name="empresa_afiliada" required  class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>NSS</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="nss" required class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Tipo de sangre</label>
-                                <select class="form-control"name="" id="">
-                                    <option value="">Tipos</option>
-                                </select>
+                                <select name="tipo_sangre" id="" class="form-control">
+                                        <?php
+                                            $array_sangre = ["A+","B+","O+","AB+","A-","B-","O-","AB-"];
+                                            for ($i=0; $i < count($array_sangre); $i++) { 
+                                                    ?>
+                                                        <option value="<?Php echo $array_sangre[$i]; ?>"><?Php echo $array_sangre[$i]; ?></option>
+                                                    <?php
+                                            }
+                                            ?>
+                                    </select>
                             </div>
                             <div class="col-6">
                                 <label>Estatus</label>
-                                <select class="form-control"name="" id="">
-                                    <option value="">Estatus</option>
-                                </select>
+                                <select name="estatus_medico" id="" class="form-control">
+                                        <?php
+                                            $array_estatus = ["VIGENTE","VENCIDO"];
+                                            for ($i=0; $i < count($array_estatus); $i++) { 
+                                                    ?>
+                                                        <option value="<?Php echo $array_estatus[$i]; ?>"><?Php echo $array_estatus[$i]; ?></option>
+                                                    <?php
+                                            }
+                                            ?>
+                                    </select>      
                             </div>                               
                         </div>  
                         <br>
@@ -340,25 +419,50 @@
                         <div class="row formcss">
                             <div class="col-6">
                                 <label>Area</label>
-                                <select class="form-control"name="" id="">
-                                    <option value="">Areas</option>
-                                </select>
+                                <select name="area_academica" id="" class="form-control">
+                                    <?php
+                                        if($this->areasAcademicas){
+                                            foreach($this->areasAcademicas as $i){
+                                                    ?>
+                                                        <option value="<?Php echo $i['ID_Area']; ?>"><?Php echo $i['Nombre']; ?></option>
+                                                    <?php 
+                                            }
+                                        }
+                                    ?>
+                                </select> 
                             </div>
                             <div class="col-6">
                                 <label>Departamento</label>
-                                <select class="form-control"name="" id="">
-                                    <option value="">Departamentos</option>
-                                </select>
+                                <select name="departamento" id="" class="form-control">
+                                    <?php
+                                        if($this->departamentos){
+                                            foreach($this->departamentos as $i){
+                                                    ?>
+                                                        <option value="<?Php echo $i['ID_Departamento']; ?>"><?Php echo $i['Nombre']; ?></option>
+                                                    <?php 
+                                            }
+                                        }
+                                    ?>
+                                </select> 
                             </div>
                             <div class="col-6">
                                 <label>Fecha de ingreso</label>
-                                <input type="date" class="form-control">
+                                <input type="date" required name="fecha_ingreso" class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Puesto</label>
-                                <select class="form-control"name="" id="">
-                                    <option value="">Puestos</option>
-                                </select>
+                                <label>Puesto</label>
+                                <select name="puestos" id="" class="form-control">
+                                    <?php
+                                        if($this->puestos){
+                                            foreach($this->puestos as $i){
+                                                    ?>
+                                                        <option value="<?Php echo $i['ID_Puesto']; ?>"><?Php echo $i['Nombre']; ?></option>
+                                                    <?php 
+                                            }
+                                        }
+                                    ?>
+                                </select> 
                             </div>                               
                         </div>  
                         <br>                              
@@ -372,11 +476,11 @@
                         <div class="row formcss">      
                             <div class="col-6">
                                 <label>Password</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="password" minlength="8"  maxlength="16"  class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Perfil</label>
-                                <input type="text" name="" id="" readonly="readonly" value="Docente" class="form-control" style="background: white;">
+                                <input type="text" name="perfil" id="" readonly="readonly" value="Docente" class="form-control" style="background: white;">
                             </div>
                         </div>   
                         <br>                            

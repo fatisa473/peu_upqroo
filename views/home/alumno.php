@@ -5,14 +5,12 @@
 <html lang="es">
 
 <head>
-	<title>Home</title>
+	<title>PEU</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="<?php echo URL;?>public/css/main.css">
 	<link rel="shortcut icon" href="<?php echo URL;?>public/assets/img/upqroo.ico"> 
 	
-</head>
-
 <body>
 	<!--Banner informativa de plataforma | Logo, nombre de módulo, Usuario y tipo de usuario-->
 	<header >
@@ -31,12 +29,12 @@
 					</div>
 
 					<div class="col-md-4 nombre-plan">
-						<h1><i class="zmdi zmdi-view-dashboard"></i> Menú principal</h1>
+						<h1><i class="zmdi zmdi-view-dashboard"></i>Menú principal</h1>
 					</div>
 					<div class="col-9 col-sm-6 col-md-4 seccion-datos">
 						<div class="datos-usuario datos-orientacion">
-						<h2 class="nombre-usuario"><?php echo $session->get("nombre"); ?></h2>
-							<h5 class="tipo-usuario"><?php echo $session->get("tipo"); ?></h5>
+							<h2 class="nombre-usuario"><?php echo $session->get("nombre"); ?></h2>
+							<h5 class="tipo-usuario"><?php echo $session->get("tipo");?></h5>
 						</div>
 					</div>
 				</div>
@@ -66,22 +64,22 @@
 											</a>
 										</li>
 										<li>
-											<a href="#">
+											<a href="<?php echo constant('URL'); ?>carreras">
 												<i class="zmdi zmdi-graduation-cap"></i> Carreras
 											</a>
 										</li>
 										<li>
-											<a href="#">
+											<a href="<?php echo constant('URL'); ?>planes">
 												<i class="zmdi zmdi-library"></i> Planes
 											</a>
 										</li>
 										<li>
-											<a href="#">
+											<a href="<?php echo constant('URL'); ?>asignaturas">
 												<i class="zmdi zmdi-book"></i> Asignaturas
 											</a>
 										</li>
 										<li>
-											<a href="#">
+											<a href="<?php echo constant('URL'); ?>#">
 												<i class="zmdi zmdi-calendar"></i> Periodos
 											</a>
 										</li>
@@ -188,4 +186,3 @@
 	<script src="<?php echo URL;?>public/js/main.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
-</html>

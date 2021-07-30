@@ -645,6 +645,299 @@ class Perfil_Administrador_Resultados extends Controller{
             break;
         }
     }
+
+    function cargar_update_imagen(){
+
+        if($imagen != false) {
+            $update = $this->model->UpdateGeneralAlumno($imagen, $_POST['matricula']);
+            
+            $mensaje = $update  ? "Se actualizo correctamente" : "No se pudo actualizar"; 
+
+            $this->session->add("operacion",$mensaje);
+        }else{
+
+            $mensaje = "No se pudo llevar a cabo la operacion"; 
+
+            $this->session->add("operacion",$mensaje);
+        }
+    }
+
+    function update_alumno_generales(){
+        $array_origen = array("pais" => $_POST["paises"], "estado" => $_POST["estados"], "municipio" => $_POST["municipios"]);
+
+        $resultado_origen =  $this->model->getOrigen($array_origen);
+        $resultado_perfil = $this->model->getPerfil($_POST["perfil"]);
+
+        if($resultado_origen && $resultado_perfil)
+        {
+            if(!isset($_FILES['imagen']['name'])){
+                $resultado_imagen = $this->model->getImagen($this->session->get("usuario"));
+                $imagen = $resultado_imagen ? $resultado_imagen['Imagen'] : false;
+            }
+            else{
+                $imagen=$_FILES['imagen']['name'];
+                move_uploaded_file($_FILES['imagen']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/peu_upqroo/public/assets/fotos/'.$_FILES['imagen']['name']);
+            }
+
+            $array_alumno = array("usuario" => $_POST["matricula"],"nombres" => $_POST["nombres"], "ap_P" => $_POST["ap_P"], 
+            "ap_M" => $_POST["ap_M"], "carrera" => $_POST["carrera"], "estatus" => "estatus", "plan_estudio" => $_POST["plan_estudio"], "periodo_ingreso" => $_POST["periodo_ingreso"], 
+            "periodo_actual" => $_POST["periodo_actual"], "creditos" => $_POST["creditos"], "tipo_ingreso" => $_POST["tipo_ingreso"], "grupo" => $_POST["grupo"],"imagen" => $imagen);
+    
+            $array_generales = array("usuario"=>$_POST["matricula"], "origen" => $resultado_origen['ID_Origen'], "nacimiento" => $_POST["nacimiento"], 
+            "curp" => $_POST["curp"], "estado_civil" => $_POST["estado_civil"], "rfc" => $_POST['rfc'], "genero" => $_POST['genero']);
+
+            $resultado_actualizar_alumno =  $this->model->updateAlumno($array_alumno);
+            $resultado_actualizar_general = $this->model->updateGeneral($array_generales);
+
+            if($resultado_actualizar_alumno && $resultado_actualizar_general)
+            {
+                $this->session->add("operacion","Se actualizo correctamente");
+            }else{
+                $this->session->add("operacion","No se actualizo correctamente");
+            }
+        }else{
+            $this->session->add("operacion","No se actualizo correctamente");
+        }
+        header("Location: ". URL ."perfil_administrador_resultados/alumno/".$_POST['matricula']."/Generales");
+    }
+
+    function update_contacto_alumno(){
+        $array_contacto = array("usuario"=>$_POST["matricula"],"direccion" => $_POST["direccion"], "tel_fijo" => $_POST["contacto_tel_domi"],"celular" => $_POST["contacto_cel"], "nombre_emergencia" => $_POST["nombre_emergencia"],
+        "num_emergencia" => $_POST["contacto_tel_eme"]);
+
+        $array_medico = array("usuario"=>$_POST["matricula"],"empresa_afiliada" => $_POST["empresa_afiliada"], "nss" => $_POST["nss"], "tipo_sangre" => $_POST["tipo_sangre"], "estatus" => $_POST['estatus']);
+
+        $resultado_actualizar_contacto =  $this->model->updateContacto($array_contacto);
+        $resultado_actualizar_medico = $this->model->updateMedico($array_medico);
+
+        if($resultado_actualizar_contacto && $resultado_actualizar_medico)
+        {
+            $this->session->add("operacion","Se actualizo correctamente");
+        }else{
+            $this->session->add("operacion","No se actualizo correctamente");
+        }
+
+        header("Location: ". URL ."perfil_administrador_resultados/alumno/".$_POST['matricula']."/Contacto");
+    }
+
+    function update_procedencia(){
+        $array_procedencia = array("usuario"=>$_POST["matricula"],"bachiller" => $_POST["bachiller"], "area_bachiller" => $_POST["area_bachiller"], "general" => $_POST["general"], 
+        "exani" => $_POST['exani'], "egel" => $_POST['egel'], "toeftl" => $_POST['toeftl'], "fecha_egreso" => $_POST['fecha_egreso']);
+
+        $resultado_actualizar_procedencia =  $this->model->updateProcedencia($array_procedencia);
+
+        if($resultado_actualizar_procedencia)
+        {
+            $this->session->add("operacion","Se actualizo correctamente");
+        }else{
+            $this->session->add("operacion","No se actualizo correctamente");
+        }
+
+        header("Location: ". URL ."perfil_administrador_resultados/alumno/".$_POST['matricula']."/Procedencia");
+    }
+
+    function update_adicionales(){
+        $array_adicionales = array("usuario"=>$_POST["matricula"],"grupo_indigena" => $_POST["grupo_indigena"], "discapacidad" => $_POST["discapacidad"], 
+        "beca" => $_POST['beca']);
+
+        $resultado_actualizar_adicional =  $this->model->updateAdicional($array_adicionales);
+
+        if($resultado_actualizar_adicional)
+        {
+            $this->session->add("operacion","Se actualizo correctamente");
+        }else{
+            $this->session->add("operacion","No se actualizo correctamente");
+        }
+
+        header("Location: ". URL ."perfil_administrador_resultados/alumno/".$_POST['matricula']."/Adicionales");
+    }
+
+    function update_docente_general(){
+        $array_origen = array("pais" => $_POST["paises"], "estado" => $_POST["estados"], "municipio" => $_POST["municipios"]);
+
+        $resultado_origen =  $this->model->getOrigen($array_origen);
+        $resultado_perfil = $this->model->getPerfil($_POST["perfil"]);
+
+        if($resultado_origen && $resultado_perfil)
+        {
+            if(!isset($_FILES['imagen']['name'])){
+                $resultado_imagen = $this->model->getImagen($_POST['num_control']);
+                $imagen = $resultado_imagen ? $resultado_imagen['Imagen'] : false;
+            }
+            else{
+                $imagen=$_FILES['imagen']['name'];
+                move_uploaded_file($_FILES['imagen']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/peu_upqroo/public/assets/fotos/'.$_FILES['imagen']['name']);
+            }
+
+            $array_docente = array("usuario" => $_POST["num_control"],"nombres" => $_POST["nombres"], "ap_P" => $_POST["ap_P"], 
+            "ap_M" => $_POST["ap_M"], "estatus" => "estatus", "grado" => $_POST["grado"], "periodo_ingreso" => $_POST["periodo_ingreso"], "imagen" => $imagen);
+    
+            $array_generales = array("usuario"=>$_POST["num_control"], "origen" => $resultado_origen['ID_Origen'], "nacimiento" => 
+            $_POST["nacimiento"], "curp" => $_POST["curp"], "estado_civil" => $_POST["estado_civil"], "rfc" => $_POST['rfc'], "genero" => $_POST['genero']);
+
+            $resultado_actualizar_docente =  $this->model->updateDocente($array_docente);
+            $resultado_actualizar_general = $this->model->updateGeneral($array_generales);
+
+            if($resultado_actualizar_docente && $resultado_actualizar_general)
+            {
+                $this->session->add("operacion","Se actualizo correctamente");
+            }else{
+                $this->session->add("operacion","No se actualizo correctamente");
+            }
+        }else{
+            $this->session->add("operacion","No se actualizo correctamente");
+        }
+        header("Location: ". URL ."perfil_administrador_resultados/docente/".$_POST['num_control']."/Generales");
+    }
+
+    function update_contacto_docente(){
+        $array_contacto = array("usuario"=>$_POST["num_control"],"direccion" => $_POST["direccion"], "tel_fijo" => $_POST["contacto_tel_domi"],"celular" => $_POST["contacto_cel"], "nombre_emergencia" => $_POST["nombre_emergencia"],
+        "num_emergencia" => $_POST["contacto_tel_eme"]);
+
+        $array_medico = array("usuario"=>$_POST["num_control"],"empresa_afiliada" => $_POST["empresa_afiliada"], "nss" => $_POST["nss"], "tipo_sangre" => $_POST["tipo_sangre"], "estatus" => $_POST['estatus']);
+
+        $resultado_actualizar_contacto =  $this->model->updateContacto($array_contacto);
+        $resultado_actualizar_medico = $this->model->updateMedico($array_medico);
+
+        if($resultado_actualizar_contacto && $resultado_actualizar_medico)
+        {
+            $this->session->add("operacion","Se actualizo correctamente");
+        }else{
+            $this->session->add("operacion","No se actualizo correctamente");
+        }
+
+        header("Location: ". URL ."perfil_administrador_resultados/docente/".$_POST['num_control']."/Contacto");
+    }
+
+    function update_laboral_docente(){
+        $array_laborales= array("usuario"=>$_POST["num_control"],"area_academica" => $_POST["area_academica"], "departamento" => $_POST["departamento"], "fecha_ingreso" => $_POST["fecha_ingreso"], 
+            "puestos" => $_POST['puestos']);
+
+            $resultado_actualizar_laboral =  $this->model->updateContacto($array_laborales);
+    
+            if($resultado_actualizar_laboral)
+            {
+                $this->session->add("operacion","Se actualizo correctamente");
+            }else{
+                $this->session->add("operacion","No se actualizo correctamente");
+            }
+    
+            header("Location: ". URL ."perfil_administrador_resultados/docente/".$_POST['num_control']."/Laborales");
+    }
+
+    function update_director_general(){
+        $array_origen = array("pais" => $_POST["paises"], "estado" => $_POST["estados"], "municipio" => $_POST["municipios"]);
+
+        $resultado_origen =  $this->model->getOrigen($array_origen);
+        $resultado_perfil = $this->model->getPerfil($_POST["perfil"]);
+
+        if($resultado_origen && $resultado_perfil)
+        {
+            if(!isset($_FILES['imagen']['name'])){
+                $resultado_imagen = $this->model->getImagen($_POST['num_control']);
+                $imagen = $resultado_imagen ? $resultado_imagen['Imagen'] : false;
+            }
+            else{
+                $imagen=$_FILES['imagen']['name'];
+                move_uploaded_file($_FILES['imagen']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/peu_upqroo/public/assets/fotos/'.$_FILES['imagen']['name']);
+            }
+
+            $array_director = array("usuario" => $_POST["num_control"],"nombres" => $_POST["nombres"], "ap_P" => $_POST["ap_P"], 
+            "ap_M" => $_POST["ap_M"], "estatus" => "estatus", "carrera" => $_POST["carreras"], "periodo_ingreso" => $_POST["periodo_ingreso"], "imagen" => $imagen);
+    
+            $array_generales = array("usuario"=>$_POST["num_control"], "origen" => $resultado_origen['ID_Origen'], "nacimiento" => 
+            $_POST["nacimiento"], "curp" => $_POST["curp"], "estado_civil" => $_POST["estado_civil"], "rfc" => $_POST['rfc'], "genero" => $_POST['genero']);
+
+            $resultado_actualizar_director =  $this->model->updateDirector($array_director);
+            $resultado_actualizar_general = $this->model->updateGeneral($array_generales);
+
+            if($resultado_actualizar_director && $resultado_actualizar_general)
+            {
+                $this->session->add("operacion","Se actualizo correctamente");
+            }else{
+                $this->session->add("operacion","No se actualizo correctamente");
+            }
+        }else{
+            $this->session->add("operacion","No se actualizo correctamente");
+        }
+        header("Location: ". URL ."perfil_administrador_resultados/director/".$_POST['num_control']."/Generales");
+    }
+
+    function update_contacto_director(){
+        $array_contacto = array("usuario"=>$_POST["num_control"],"direccion" => $_POST["direccion"], "tel_fijo" => $_POST["contacto_tel_domi"],"celular" => $_POST["contacto_cel"], "nombre_emergencia" => $_POST["nombre_emergencia"],
+        "num_emergencia" => $_POST["contacto_tel_eme"]);
+
+        $array_medico = array("usuario"=>$_POST["num_control"],"empresa_afiliada" => $_POST["empresa_afiliada"], "nss" => $_POST["nss"], "tipo_sangre" => $_POST["tipo_sangre"], "estatus" => $_POST['estatus']);
+
+        $resultado_actualizar_contacto =  $this->model->updateContacto($array_contacto);
+        $resultado_actualizar_medico = $this->model->updateMedico($array_medico);
+
+        if($resultado_actualizar_contacto && $resultado_actualizar_medico)
+        {
+            $this->session->add("operacion","Se actualizo correctamente");
+        }else{
+            $this->session->add("operacion","No se actualizo correctamente");
+        }
+
+        header("Location: ". URL ."perfil_administrador_resultados/director/".$_POST['num_control']."/Contacto");
+    }
+
+    function update_administrativo_general(){
+        $array_origen = array("pais" => $_POST["paises"], "estado" => $_POST["estados"], "municipio" => $_POST["municipios"]);
+
+        $resultado_origen =  $this->model->getOrigen($array_origen);
+        $resultado_perfil = $this->model->getPerfil($_POST["perfil"]);
+
+        if($resultado_origen && $resultado_perfil)
+        {
+            if(!isset($_FILES['imagen']['name'])){
+                $resultado_imagen = $this->model->getImagen($_POST['num_control']);
+                $imagen = $resultado_imagen ? $resultado_imagen['Imagen'] : false;
+            }
+            else{
+                $imagen=$_FILES['imagen']['name'];
+                move_uploaded_file($_FILES['imagen']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/peu_upqroo/public/assets/fotos/'.$_FILES['imagen']['name']);
+            }
+
+            $array_administrativo = array("usuario" => $_POST["num_control"],"nombres" => $_POST["nombres"], "ap_P" => $_POST["ap_P"], 
+            "ap_M" => $_POST["ap_M"], "estatus" => "estatus", "carrera" => $_POST["carreras"], "imagen" => $imagen);
+    
+            $array_generales = array("usuario"=>$_POST["num_control"], "origen" => $resultado_origen['ID_Origen'], "nacimiento" => 
+            $_POST["nacimiento"], "curp" => $_POST["curp"], "estado_civil" => $_POST["estado_civil"], "rfc" => $_POST['rfc'], "genero" => $_POST['genero']);
+
+            $resultado_actualizar_administrativo =  $this->model->updateAdministrativo($array_administrativo);
+            $resultado_actualizar_general = $this->model->updateGeneral($array_generales);
+
+            if($resultado_actualizar_administrativo && $resultado_actualizar_general)
+            {
+                $this->session->add("operacion","Se actualizo correctamente");
+            }else{
+                $this->session->add("operacion","No se actualizo correctamente");
+            }
+        }else{
+            $this->session->add("operacion","No se actualizo correctamente");
+        }
+        header("Location: ". URL ."perfil_administrador_resultados/administrativo/".$_POST['num_control']."/Generales");
+    }
+
+    function update_contacto_administrativo(){
+        $array_contacto = array("usuario"=>$_POST["num_control"],"direccion" => $_POST["direccion"], "tel_fijo" => $_POST["contacto_tel_domi"],"celular" => $_POST["contacto_cel"], "nombre_emergencia" => $_POST["nombre_emergencia"],
+        "num_emergencia" => $_POST["contacto_tel_eme"]);
+
+        $array_medico = array("usuario"=>$_POST["num_control"],"empresa_afiliada" => $_POST["empresa_afiliada"], "nss" => $_POST["nss"], "tipo_sangre" => $_POST["tipo_sangre"], "estatus" => $_POST['estatus']);
+
+        $resultado_actualizar_contacto =  $this->model->updateContacto($array_contacto);
+        $resultado_actualizar_medico = $this->model->updateMedico($array_medico);
+
+        if($resultado_actualizar_contacto && $resultado_actualizar_medico)
+        {
+            $this->session->add("operacion","Se actualizo correctamente");
+        }else{
+            $this->session->add("operacion","No se actualizo correctamente");
+        }
+
+        header("Location: ". URL ."perfil_administrador_resultados/administrativo/".$_POST['num_control']."/Contacto");
+    }
 }   
 
 ?>
