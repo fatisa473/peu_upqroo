@@ -144,8 +144,9 @@
 						<div class="contenido">
                             <div class="contenido-box">
                 <!-- Informacion - Inicio -->
-                <form class="container mt-3">
-                <div class="row rowgreen"></div>
+                <form class="container mt-3"  action="<?php echo URL;?>perfil_administrador_resultados/update_contacto_administrativo" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="num_control" value="<?php echo $this->usuario; ?>">
+				<div class="row rowgreen"></div>
                 <div class="row rowhite">
                     <div class="col">
                         <div class="row">

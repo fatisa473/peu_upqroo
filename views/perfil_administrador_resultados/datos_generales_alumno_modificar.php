@@ -149,7 +149,7 @@
 						<div class="contenido">
                             <div class="contenido-box">
                 <!-- Informacion - Inicio -->
-                <form class="container mt-3">
+                <form class="container mt-3" action="<?php echo URL;?>perfil_administrador_resultados/update_alumno_generales" method="POST" enctype="multipart/form-data">
                 <div class="row rowgreen"></div>
                 <div class="row rowhite">
                     <div class="col">
@@ -164,7 +164,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label>Matricula</label>
-                                        <input type="text" class="form-control" name="matricula" disabled value="<?php echo $this->resultado_alumno['Matricula']; ?>">
+                                        <input type="text" class="form-control" name="matricula" readOnly value="<?php echo $this->resultado_alumno['Matricula']; ?>">
                                     </div>
                                     <div class="col-6">
                                         <label>Nombre</label>
@@ -293,7 +293,7 @@
                             </div>
                             <div class="col-6">
                                 <label>CURP</label>
-                                <input type="text" class="form-control" name="curp" required  value="<?php echo $this->resultado_generales['CURP']; ?>">
+                                <input type="text" class="form-control" name="curp" required maxlength="18"  value="<?php echo $this->resultado_generales['CURP']; ?>">
                             </div>
                             <div class="col-6">
                                 <label>Plan de estudios</label>
@@ -381,7 +381,7 @@
                             </div>
                             <div class="col-6">
                                 <label>RFC</label>
-                                <input type="text" class="form-control"  value="<?php echo $this->resultado_generales['RFC']; ?>">
+                                <input type="text" class="form-control" maxlength="13" name="rfc" required  value="<?php echo $this->resultado_generales['RFC']; ?>">
                             </div>
                             <div class="col-6">
                                 <label>Tipo de ingreso</label>

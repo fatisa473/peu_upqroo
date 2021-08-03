@@ -160,7 +160,7 @@
                             <div class="contenido-box">
                 <!-- Informacion - Inicio -->
 
-                <form class="container mt-3" action="<?php echo URL;?>perfil_administrador/nuevo_alumno" method="POST" enctype="multipart/form-control">
+                <form class="container mt-3" action="<?php echo URL;?>perfil_administrador/nuevo_alumno" method="POST" enctype="multipart/form-data">
                 <div class="row rowgreen"></div>
                 <div class="row rowhite">
                     <div class="col">                    
@@ -176,7 +176,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label>Matricula</label>
-                                        <input type="text" name="matricula" required class="form-control">
+                                        <input type="text" name="matricula" required class="form-control" pattern="[0-9]+">
                                     </div>
                                     <div class="col-6">
                                         <label>Nombres</label>
@@ -358,7 +358,7 @@
                             </div>
                             <div class="col-6">
                                 <label>CURP</label>
-                                <input type="text" name="curp" required class="form-control" >
+                                <input type="text" name="curp" required class="form-control" maxlength="18" >
                             </div>
 
                             <div class="col-6">
@@ -377,7 +377,7 @@
                             </div>
                             <div class="col-6">
                                 <label>RFC</label>
-                                <input type="text" class="form-control" name="rfc">
+                                <input type="text" class="form-control" required name="rfc" maxlength="13">
                             </div>
                             <div class="col-6">
                                 <label>Genero</label>
@@ -439,7 +439,7 @@
                             </div>
                             <div class="col-6">
                                 <label>NSS</label>
-                                <input type="text" name="nss" required class="form-control">
+                                <input type="number" name="nss" required class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Tipo de sangre</label>
@@ -479,7 +479,7 @@
                         <div class="row formcss">
                             <div class="col-6">
                                 <label>Escuela de procedencia</label>
-                                <select name="bachiller" id="" class="form-control">
+                                <select name="bachiller" id="" class="form-control" >
                                         <?php
                                             if($this->bachilleres){
                                                 foreach($this->bachilleres as $i){
@@ -507,23 +507,23 @@
                             </div>
                             <div class="col-6">
                                 <label>Promedio general</label>
-                                <input type="number" class="form-control"  name="general" class="form-control">
+                                <input type="number" class="form-control"  name="general" class="form-control" required>
                             </div>
                             <div class="col-6">
                                 <label>Promedio exani II</label>
-                                <input type="number" class="form-control" name="exani" class="form-control">
+                                <input type="number" class="form-control" name="exani" class="form-control" required>
                             </div>
                             <div class="col-6">
                                 <label>Promedio egel</label>
-                                <input type="number" class="form-control" name="egel" class="form-control">
+                                <input type="number" class="form-control" name="egel" class="form-control" required>
                             </div>
                             <div class="col-6">
                                 <label>Promedio toefl</label>
-                                <input type="number" class="form-control" name="toeftl" class="form-control">
+                                <input type="number" class="form-control" name="toeftl" class="form-control" required >
                             </div>
                             <div class="col-6">
                                 <label>Fecha de egreso</label>
-                                <input type="date" class="form-control" name="fecha_egreso" class="form-control">
+                                <input type="date" class="form-control" name="fecha_egreso" class="form-control" required>
                             </div>                             
                         </div>   
                         <br>
@@ -552,7 +552,7 @@
                             </div>
                             <div class="col-6">
                                 <label>Lengua indigena</label>
-                                <input type="text" class="form-control" name="lengua_indigena" id="lengua_indigena" readOnly class="form-control" style="background: white;">
+                                <input type="text" class="form-control" name="lengua_indigena" value="Ninguno" id="lengua_indigena" readOnly class="form-control" style="background: white;">
                             </div>
                             <div class="col-6">
                                 <label>Discapacidad</label>
@@ -594,7 +594,7 @@
                         <div class="row formcss">      
                             <div class="col-6">
                                 <label>Password</label>
-                                <input type="text" minlength="8" maxlength="16" name="password" class="form-control">
+                                <input type="password" minlength="8" maxlength="16" name="password" required class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Perfil</label>
@@ -602,15 +602,15 @@
                             </div>
                         </div>   
                         <br>                            
-                        <!-- DOCUMENTOS - PENDIENTE -->
+                        <!-- DOCUMENTOS -->
                         <div class="row formcss">
                             <div class="col-12">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-10">
                                         <h4>Documentos</h4>
                                     </div>   
-                                    <div class="text-right mr-5">
-                                        <button class="btn btn-primary">Agregar fila</button>
+                                    <div class="col mb-2" style="text-align: right;">
+                                        <button id="tipos_documentos" type="button" class="btn btn-primary" onclick="crearDocumento();">Agregar fila</button>
                                     </div> 
                                     <hr>  
                                 </div>   
@@ -620,35 +620,18 @@
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Tipo de Documento</th>
                                         <th scope="col">Estatus</th>
-                                        <th scope="col">Agregar</th>
+                                        <th scope="col">Archivo</th>
+                                        <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody class="justify-content-center align-items-center">
-                                    <tr>
-                                        <td>
-                                        <input type="text" class="form-control">
-                                        </td>
-                                        <td>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Tipos</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Estatus</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <a href="#"><button type="submit" class="btn btn-secondary">Agregar</button></a>
-                                        </td>
-                                    </tr>
+                                <tbody class="justify-content-center align-items-center" id="table_documentos">
                                 </tbody>
                                 </table>     
                             </div>
                         </div>     
                         <div class="form-group mt-3">
                             <button type="submit" class="btn btn-primary mr-2">Crear Alumno</button>
-                            <a href="<?php echo URL; ?>perfil_administrador/agregar_perfil" class="btn btn-danger">Cancelar</a>
+                            <a href="<?php echo URL; ?>perfil_administrador/agregar_alumno" class="btn btn-danger">Cancelar</a>
                         </div>           
                     </div>
                 </div>

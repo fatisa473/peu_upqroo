@@ -298,7 +298,7 @@
                             </div>
                             <div class="col-6">
                                 <label>CURP</label>
-                                <input type="text"  name="curp" required class="form-control" >
+                                <input type="text"  name="curp" required maxlength="18" class="form-control" >
                             </div>
 
                             <div class="col-6">
@@ -317,7 +317,7 @@
                             </div>
                             <div class="col-6">
                                 <label>RFC</label>
-                                <input type="text"name="rfc" required class="form-control">
+                                <input type="text"name="rfc" required maxlength="13" class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Genero</label>
@@ -379,7 +379,7 @@
                             </div>
                             <div class="col-6">
                                 <label>NSS</label>
-                                <input type="text" name="nss" required class="form-control">
+                                <input type="number" name="nss" required class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Tipo de sangre</label>
@@ -476,7 +476,7 @@
                         <div class="row formcss">      
                             <div class="col-6">
                                 <label>Password</label>
-                                <input type="text" name="password" minlength="8"  maxlength="16"  class="form-control">
+                                <input type="password" name="password" required minlength="8"  maxlength="16"  class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Perfil</label>
@@ -488,11 +488,11 @@
                         <div class="row formcss">
                             <div class="col-12">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-10">
                                         <h4>Carreras y Asignaturas</h4>
                                     </div>   
-                                    <div class="text-right mr-5">
-                                        <button class="btn btn-primary">Agregar fila</button>
+                                    <div class="col mb-2" style="text-align: right;">
+                                        <button class="btn btn-primary" type="button" onclick="crearAsignatura();">Agregar fila</button>
                                     </div>   
                                     <hr>
                                 </div>   
@@ -502,24 +502,10 @@
                                         <th scope="col">Carrera</th>
                                         <th scope="col">Asignatura</th>
                                         <th scope="col">Estatus</th>
+                                        <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody class="justify-content-center align-items-center">
-                                    <tr>
-                                        <td>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Carreras</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Asignaturas</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input type="text" name="" id="" readonly="readonly" value="Activo" class="form-control text-center" style="background: white;">
-                                        </td>
-                                    </tr>
+                                <tbody class="justify-content-center align-items-center" id="table_asignaturas">
                                 </tbody>
                                 </table>     
                             </div>
@@ -529,49 +515,33 @@
                         <div class="row formcss">
                             <div class="col-12">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-10">
                                         <h4>Documentos</h4>
                                     </div>   
-                                    <div class="text-right mr-5">
-                                        <button class="btn btn-primary">Agregar fila</button>
-                                    </div>   
+                                    <div class="col mb-2" style="text-align: right;">
+                                        <button id="tipos_documentos" type="button" class="btn btn-primary" onclick="crearDocumento();">Agregar fila</button>
+                                    </div>  
                                     <hr>
                                 </div>   
                                 <table class="table text-center">
                                 <thead style="background: #00b6bf; color: #fff;">
                                     <tr>
-                                        <th scope="col">Nombre</th>
+                                    <th scope="col">Nombre</th>
                                         <th scope="col">Tipo de Documento</th>
                                         <th scope="col">Estatus</th>
-                                        <th scope="col">Agregar</th>
+                                        <th scope="col">Archivo</th>
+                                        <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody class="justify-content-center align-items-center">
-                                    <tr>
-                                        <td>
-                                        <input type="text" class="form-control">
-                                        </td>
-                                        <td>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Tipos</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Estatus</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <a href="#" target="_blank"><button type="button" class="btn btn-secondary">Agregar</button></a>
-                                        </td>
-                                    </tr>
+                                <tbody class="justify-content-center align-items-center" id="table_documentos">
+
                                 </tbody>
                                 </table>     
                             </div>
                         </div>     
                         <div class="form-group mt-3">
                             <button type="submit" class="btn btn-primary mr-2">Crear Docente</button>
-                            <a href="#" class="btn btn-danger">Cancelar</a>
+                            <a href="<?php echo URL; ?>perfil_administrador/agregar_docente" class="btn btn-danger">Cancelar</a>
                         </div>           
                     </div>
                 </div>

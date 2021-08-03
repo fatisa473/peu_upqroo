@@ -161,7 +161,7 @@
 						<div class="contenido">
                             <div class="contenido-box">
                 <!-- Informacion - Inicio -->
-                <form class="container mt-3">
+                <form class="container mt-3"  >
                 <div class="row rowgreen"></div>
                 <div class="row rowhite">
                     <div class="col">

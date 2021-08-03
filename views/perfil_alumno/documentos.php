@@ -172,7 +172,7 @@
                                         <td>
                                             <?php echo $this->resultado_documentos[$key]['Estatus'] ;?>
                                         </td>
-                                        <td><a href="<?php echo URL;?>public/docs/<?php echo $this->resultado_documentos[$key]['documento'] ;?>" target="_blank"><button
+                                        <td><a href="<?php echo URL;?>public/docs/<?php echo $this->resultado_documentos[$key]['Ruta'] ;?>" target="_blank"><button
                                             type="button" class="btn btn-secondary">Ver Documento</button></a>
                                         </td>
                                     </tr>

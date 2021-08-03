@@ -144,7 +144,8 @@
 						<div class="contenido">
                             <div class="contenido-box">
                 <!-- Informacion - Inicio -->
-                <form class="container mt-3">
+                <form class="container mt-3" action="<?php echo URL;?>perfil_administrador_resultados/update_contacto_alumno" method="POST" enctype="multipart/form-data">
+				 <input type="hidden" name="matricula" value="<?php echo $this->usuario;?>">
                 <div class="row rowgreen"></div>
                 <div class="row rowhite">
                     <div class="col">

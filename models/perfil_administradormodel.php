@@ -347,6 +347,23 @@
             }
             return false;
         }
+
+        public function getAsignaturas(){
+            $sql = "SELECT ID_Asig, Nombre_Asig FROM asignatura";
+            $consulta= $this->db->connect()->prepare($sql);
+            $consulta->execute();
+    
+            if(!empty($consulta))
+            {
+                $resultado = array();
+                while($fila =$consulta->fetch(PDO::FETCH_ASSOC))
+                {
+                    $resultado[] = $fila;
+                }
+                return $resultado;
+            }
+            return false;
+        }
     
         public function getPaises(){
             $sql = "SELECT ID_Pais, Nombre FROM paises";
@@ -676,7 +693,7 @@
         }
 
         public function insertDirector($data){
-            $sql = "INSERT INTO director_carrera (Num_Control, Nombres, Apellido_materno, Apellido_paterno, Imagen, Estatus ID_Carrera, ID_Periodo) 
+            $sql = "INSERT INTO director_carrera (Num_Control, Nombres, Apellido_materno, Apellido_paterno, Imagen, Estatus, ID_Carrera, ID_Periodo) 
             VALUES (?,?, ?,?, ?, ?, ?,?)";
             $consulta= $this->db->connect()->prepare($sql);
             $consulta->execute([$data['usuario'],$data['nombres'], $data['ap_P'],$data['ap_M'],$data['imagen'],$data['estatus'],$data['carrera'],$data['periodo_ingreso']]);
@@ -688,13 +705,13 @@
             $sql = "INSERT INTO administrativos (Num_Control, Nombres, Apellido_materno, Apellido_paterno, Imagen, Estatus, ID_Carrera) 
             VALUES (?, ?, ?, ?, ?,?, ?)";
             $consulta= $this->db->connect()->prepare($sql);
-            $consulta->execute([$data['usuario'],$data['nombres'], $data['ap_P'],$data['ap_M'],$data['imagen'],$data['estatus'],$data['carrera'],$data['periodo_ingreso']]);
+            $consulta->execute([$data['usuario'],$data['nombres'], $data['ap_P'],$data['ap_M'],$data['imagen'],$data['estatus'],$data['carrera']]);
 
             return !empty($consulta) ? true : false;
         }
 
         public function insertLaboral($data){
-            $sql = "INSERT INTO datos_laborales (Num_Control, ID_Area, ID_Departamento, 'Fecha-ingreso', ID_Puesto) 
+            $sql = "INSERT INTO datos_laborales (Num_Control, ID_Area, ID_Departamento, Fecha_ingreso, ID_Puesto) 
             VALUES (?, ?, ?, ?, ?)";
             $consulta= $this->db->connect()->prepare($sql);
             $consulta->execute([$data['usuario'],$data['area_academica'], $data['departamento'],$data['fecha_ingreso'],$data['puestos']]);
@@ -753,6 +770,40 @@
             $consulta->execute([$data['usuario'],$data['password'],$data['perfil']]);
 
             return !empty($consulta) ? true : false;
+        }
+
+        public function insertDocumentos($data){
+            $sql = "INSERT INTO documentos (Num_Control, ID_Carrera, ID_Asignatura, Estatus) 
+            VALUES (?,?,?,?)";
+            $consulta= $this->db->connect()->prepare($sql);
+            $consulta->execute([$data['usuario'],$data['carrera'],$data['asignatura'],$data['estatus']]);
+
+            return !empty($consulta) ? true : false;
+        }
+
+        public function insertAsignaturas($data){
+            $sql = "INSERT INTO asignaturas_docente (Num_Control, ID_Carrera, ID_Asignatura, Estatus) 
+            VALUES (?,?,?,?)";
+            $consulta= $this->db->connect()->prepare($sql);
+            $consulta->execute([$data['usuario'],$data['carrera'],$data['asignatura'],$data['estatus']]);
+
+            return !empty($consulta) ? true : false;
+        }
+
+        public function getTiposDocumentos(){
+            $sql = "SELECT ID_Tipo_Doc, Nombre FROM tipo_documentos";
+            $consulta= $this->db->connect()->prepare($sql);
+            $consulta->execute();
+            
+            return !empty($consulta) ? $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC) : false;
+        }
+
+        public function getEstatusDocumentos(){
+            $sql = "SELECT ID_Tipo_Doc, Nombre FROM tipo_documentos";
+            $consulta= $this->db->connect()->prepare($sql);
+            $consulta->execute();
+            
+            return !empty($consulta) ? $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC) : false;
         }
         
     }

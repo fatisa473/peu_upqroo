@@ -160,7 +160,7 @@
                             <div class="contenido-box">
                 <!-- Informacion - Inicio -->
 
-                <form class="container mt-3"  action="<?php echo URL;?>perfil_administrador/nuevo_director" method="POST" enctype="multipart/form-control">
+                <form class="container mt-3"  action="<?php echo URL;?>perfil_administrador/nuevo_director" method="POST" enctype="multipart/form-data">
                 <div class="row rowgreen"></div>
                 <div class="row rowhite">
                     <div class="col">                    
@@ -176,7 +176,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label>Numero de control</label>
-                                        <input type="text" name="num_control" required class="form-control">
+                                        <input type="text" name="num_control" required class="form-control" pattern="[0-9]+">
                                     </div>
                                     <div class="col-6">
                                         <label>Nombres</label>
@@ -188,7 +188,7 @@
                                     </div>
                                     <div class="col-6">
                                         <label>Apellido materno</label>
-                                        <input type="text" name="ap_M" class="form-control" >
+                                        <input type="text" name="ap_M" required class="form-control" >
                                     </div>
                                     <div class="col-6">
                                         <label>Estatus</label>
@@ -298,7 +298,7 @@
                             </div>
                             <div class="col-6">
                                 <label>CURP</label>
-                                <input type="text" name="curp" required class="form-control" >
+                                <input type="text" name="curp" required maxlength="18" class="form-control" >
                             </div>
 
                             <div class="col-6">
@@ -317,7 +317,7 @@
                             </div>
                             <div class="col-6">
                                 <label>RFC</label>
-                                <input type="text"  name="rfc" required class="form-control">
+                                <input type="text"  name="rfc" required  maxlength="13" class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Genero</label>
@@ -379,7 +379,7 @@
                             </div>
                             <div class="col-6">
                                 <label>NSS</label>
-                                <input type="text"  name="nss" required class="form-control">
+                                <input type="number"  name="nss" required class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Tipo de sangre</label>
@@ -396,7 +396,7 @@
                             </div>
                             <div class="col-6">
                                 <label>Estatus</label>
-                                <select name="estatus" id="" class="form-control">
+                                <select name="estatus_medico" id="" class="form-control">
                                         <?php
                                             $array_estatus = ["VIGENTE","VENCIDO"];
                                             for ($i=0; $i < count($array_estatus); $i++) { 
@@ -419,7 +419,7 @@
                         <div class="row formcss">      
                             <div class="col-6">
                                 <label>Password</label>
-                                <input type="text" name="password" required minlength="8" maxlength="16" class="form-control">
+                                <input type="password" name="password" required minlength="8" maxlength="16" class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Perfil</label>
@@ -431,11 +431,11 @@
                         <div class="row formcss">
                             <div class="col-12">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-10">
                                         <h4>Documentos</h4>
                                     </div>   
-                                    <div class="text-right mr-5">
-                                        <button class="btn btn-primary">Agregar fila</button>
+                                    <div class="col mb-2" style="text-align: right;">
+                                        <button type="button" class="btn btn-primary" onclick="crearDocumento();">Agregar fila</button>
                                     </div>   
                                     <hr>
                                 </div>   
@@ -445,35 +445,19 @@
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Tipo de Documento</th>
                                         <th scope="col">Estatus</th>
-                                        <th scope="col">Agregar</th>
+                                        <th scope="col">Archivo</th>
+                                        <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody class="justify-content-center align-items-center">
-                                    <tr>
-                                        <td>
-                                        <input type="text" class="form-control">
-                                        </td>
-                                        <td>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Tipos</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Estatus</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <a href="#" target="_blank"><button type="button" class="btn btn-secondary">Agregar</button></a>
-                                        </td>
-                                    </tr>
+                                <tbody class="justify-content-center align-items-center" id="table_documentos">
+
                                 </tbody>
                                 </table>     
                             </div>
                         </div>     
                         <div class="form-group mt-3">
                             <button type="submit" class="btn btn-primary mr-2">Crear Director</button>
-                            <a href="#" class="btn btn-danger">Cancelar</a>
+                            <a href="<?php echo URL; ?>perfil_administrador/agregar_director" class="btn btn-danger">Cancelar</a>
                         </div>           
                     </div>
                 </div>

@@ -5,13 +5,11 @@
 <html lang="es">
 
 <head>
-	<title>Documentos</title>
+	<title>Cuenta</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="<?php echo URL;?>public/css/main.css">
 	<link rel="shortcut icon" href="<?php echo URL;?>public/assets/img/upqroo.ico"> 
-
-    
 
     <link href="<?php echo URL;?>public/css/style_perfil.css" rel="stylesheet" type="text/css">
 	
@@ -44,6 +42,20 @@
 			</div>
 	</section>
 	</header>
+
+    <?php
+        if($session->get('operacion'))
+        {   
+    ?>
+        <script>
+            alert('<?php echo $session->get('operacion'); ?>');
+        </script>
+    <?php
+        $session->remove('operacion');
+        } 
+    ?>
+
+
 	<!--Sección de contenido de página | Menú de hamburguesa e información de pestaña-->
 	<section class="seccionmaster">
 		<div class="contenedormaster">
@@ -59,7 +71,7 @@
 									<ul class="list-unstyled full-box dashboard-sideBar-Menu menu-menu">
 				
 										<li class="seleccionar">
-											<a href="<?php echo URL.'perfil_administrador';?>"> 
+											<a href="<?php echo URL.'perfil_docente';?>"> 
 												<i class="zmdi zmdi-account"></i> Perfiles
 											</a>
 										</li>
@@ -118,16 +130,13 @@
 											<a href="#!"><div class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></div></a>
 										</li>
 										<li class="li-left indice-navegacion">
-											<a href="<?php echo URL.'home/administrador';?>"><div class="op-navegador"><div class="navegadornombre">Inicio</div><div class="navegadorflecha"><i class="zmdi zmdi-chevron-right"></i></div></div></a>
+											<a href="<?php echo URL.'home/docente';?>"><div class="op-navegador"><div class="navegadornombre">Inicio</div><div class="navegadorflecha"><i class="zmdi zmdi-chevron-right"></i></div></div></a>
 										</li>
 										<li class="li-left indice-navegacion">
-											<a href="<?php echo URL.'perfil_administrador';?>"><div class="op-navegador"><div class="navegadornombre">Perfil</div><div class="navegadorflecha"><i class="zmdi zmdi-chevron-right"></i></div></div></a>
-										</li>
-                                        <li class="li-left indice-navegacion">
-											<a href="<?php echo URL.'perfil_administrador/buscador/Todos';?>"><div class="op-navegador"><div class="navegadornombre">Buscador</div><div class="navegadorflecha"><i class="zmdi zmdi-chevron-right"></i></div></div></a>
+											<a href="<?php echo URL.'perfil_docente';?>"><div class="op-navegador"><div class="navegadornombre">Perfil</div><div class="navegadorflecha"><i class="zmdi zmdi-chevron-right"></i></div></div></a>
 										</li>
 										<li class="li-left indice-navegacion">
-											<a href="#!"><div class="op-navegador"><div class="navegadornombre">Resultado <?php echo $this->usuario;?></div></div></a>
+											<a href="#!"><div class="op-navegador"><div class="navegadornombre">Cuenta</div></div></a>
 										</li>
 										<li class="li-right">
 											<a href="#!" class="btn-exit-system margen-navbar"><div class="espacio"><i></i>Cerrar sesión</div></a>
@@ -140,56 +149,34 @@
 						        </nav>
 
 				<!-- Contenido de pestaña-->
-
                 <div class="pestaña-contenido">
 					<section class="full-box">
 						<div class="contenido">
                             <div class="contenido-box">
-
                 <!-- Informacion - Inicio -->
-                <form class="container">
-                <div class="row formcss">
-                    <table class="table text-center">
-                        <thead style="background: #00b6bf; color: #fff;">
-                            <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Tipo de Documento</th>
-                                <th scope="col">Estatus</th>
-                                <th scope="col">Ver</th>
-                            </tr>
-                        </thead>
-                    <tbody>
-                    <?php
-                        if($this->resultado_documentos)
-                        {
-                            foreach($this->resultado_documentos as $key => $value)
-                            {
-                                ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $this->resultado_documentos[$key]['documento'] ;?>
-                                        </td>
-                                        <td>
-                                            <?php echo $this->resultado_documentos[$key]['tipo_documento'] ;?>
-                                        </td>
-                                        <td>
-                                            <?php echo $this->resultado_documentos[$key]['Estatus'] ;?>
-                                        </td>
-                                        <td><a href="<?php echo URL;?>public/docs/<?php echo $this->resultado_documentos[$key]['documento'] ;?>" target="_blank"><button
-                                            type="button" class="btn btn-secondary">Ver Documento</button></a>
-                                        </td>
-                                    </tr>
-                                <?php
-                            }
-                        }
-                    ?>
-                    </tbody>
-                    </table>
+                <form class="container mt-3" action="<?php echo URL;?>perfil_docente/update_cuenta" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="num_control" value="<?php echo $session->get("usuario");?>">
+                <div class="row rowgreen"></div>
+                <div class="row rowhite">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col mt-3">
+                                <h4>Cambiar contraseña</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row formcss">
+                            <div class="col-12">
+                                <label>Nueva contraseña</label>
+                                <input type="password" name="password" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+					<div class="form-group mt-3">
+                            <button type="submit" class="btn btn-primary" name="inf_administrativo">Guardar</button>
+                            <a href="<?php echo URL;?>perfil_docente/cuenta" class="btn btn-danger">Cancelar</a>
+                        </div>
                 </div>
-                <br>
-                        <div class="row justify-content-end align-items-end mr-3" style="width:100px;">
-                            <button type="submit" class="btn btn-primary " name="imp">Imprimir</button>
-                        </div>   
             </form>
             <br>
                 <!-- Informacion - Fin -->
@@ -197,7 +184,6 @@
                         </div>
                     </section>
                 </div>
-
 			</div>
 			</div>
 		</div>

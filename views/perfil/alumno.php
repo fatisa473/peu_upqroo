@@ -193,6 +193,18 @@
                                 </div>
                             </div>
                         </div>
+						<div class="col-sm-3">
+                            <br>
+                            <div class="card">
+                                <div class="card-body mt-1">
+                                    <a href="<?php echo URL.'perfil_alumno/cuenta';?>">
+                                        <img src="<?php echo URL;?>public/assets/img/datos.png" class="img-fluid" width="100" height="100" align="center">
+                                        <p></p>
+                                    </a>
+                                    <h4 class="card-title mt-3">Cuenta</h4>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Informacion - Fin -->

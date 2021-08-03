@@ -226,6 +226,7 @@
                                                             <option value="Procedencia">Procedencia</option>
                                                             <option value="Adicionales">Adicionales</option>
                                                             <option value="Documentos">Documentos</option>
+                                                            <option value="Cuenta">Cuenta</option>
                                                             <?php
                                                     }else if($this->buscador_resultados[$i]['Perfil'] == "Docente"){
                                                         ?>
@@ -235,6 +236,7 @@
                                                             <option value="Laborales">Datos laborales</option>
                                                             <option value="Documentos">Documentos</option>
                                                             <option value="Historial">Historial</option>
+                                                            <option value="Cuenta">Cuenta</option>
                                                         <?php                                                                
                                                     }
                                                     else if($this->buscador_resultados[$i]['Perfil'] == "Director"){
@@ -243,6 +245,7 @@
                                                             <option value="Generales">Datos generales</option>
                                                             <option value="Contacto">Contacto</option>
                                                             <option value="Documentos">Documentos</option>
+                                                            <option value="Cuenta">Cuenta</option>
                                                         <?php                                                                
                                                     }else if($this->buscador_resultados[$i]['Perfil'] == "Administrativo"){
                                                         ?>
@@ -251,6 +254,7 @@
                                                             <option value="Contacto">Contacto</option>
                                                             <option value="Laborales">Datos laborales</option>
                                                             <option value="Documentos">Documentos</option>
+                                                            <option value="Cuenta">Cuenta</option>
                                                         <?php                                                                
                                                     }
                                                     

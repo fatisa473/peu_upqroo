@@ -60,7 +60,7 @@
 								
 									<ul class="list-unstyled full-box dashboard-sideBar-Menu menu-menu">
 				
-										<li class="seleccionar">
+										<li class="">
 											<a href="<?php echo URL.'perfil_director';?>"> 
 												<i class="zmdi zmdi-account"></i> Perfiles
 											</a>

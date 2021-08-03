@@ -315,7 +315,7 @@
                             </div>
                             <div class="col-6">
                                 <label>Fecha de ingreso</label>
-                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_laboral['Fecha-ingreso'] ;?>">
+                                <input type="text" class="form-control" disabled value="<?php echo $this->resultado_laboral['Fecha_ingreso'] ;?>">
                             </div>
                             <div class="col-6">
                                 <label>Puesto</label>

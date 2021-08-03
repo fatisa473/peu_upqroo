@@ -146,7 +146,8 @@
 						<div class="contenido">
                             <div class="contenido-box">
                 <!-- Informacion - Inicio -->                
-                <form class="container mt-3">
+                <form class="container mt-3" action="<?php echo URL;?>perfil_administrador_resultados/update_laboral_administrativo" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="num_control" value="<?php echo $this->usuario; ?>">
                 <div class="row rowgreen"></div>
                 <div class="row rowhite">
                     <div class="col">
@@ -219,7 +220,7 @@
                             </div>
                             <div class="col-6">
                                 <label>Fecha de ingreso</label>
-                                <input type="date" class="form-control" required name="fecha_ingreso" value="<?php echo $this->resultado_laboral['Fecha-ingreso'] ;?>">
+                                <input type="date" class="form-control" required name="fecha_ingreso" value="<?php echo $this->resultado_laboral['Fecha_ingreso'] ;?>">
                             </div>
                         </div>
                         <br>

@@ -149,7 +149,7 @@
 						<div class="contenido">
                             <div class="contenido-box">
                 <!-- Informacion - Inicio -->                
-                <form class="container mt-3">
+                <form class="container mt-3" action="<?php echo URL;?>perfil_administrador_resultados/update_docente_general" method="POST" enctype="multipart/form-data">
                 <div class="row rowgreen"></div>
                 <div class="row rowhite">
                     <div class="col">
@@ -164,19 +164,19 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label>Numero de control</label>
-                                        <input type="text" class="form-control" name="num_control" disabled value="<?php echo $this->resultado_docente['Num_Control'] ;?>">
+                                        <input type="text" class="form-control" name="num_control" readOnly value="<?php echo $this->resultado_docente['Num_Control'] ;?>">
                                     </div>
                                     <div class="form-group2 col-6">
                                         <label>Nombre</label>
-                                        <input type="text" class="form-control" name="nombres" value="<?php echo $this->resultado_docente['Nombres'] ;?>">
+                                        <input type="text" class="form-control" name="nombres" required value="<?php echo $this->resultado_docente['Nombres'] ;?>">
                                     </div>
                                     <div class="col-6">
                                         <label>Apellido paterno</label>
-                                        <input type="text" class="form-control" name="ap_P" value="<?php echo $this->resultado_docente['Apellido_paterno'] ;?>">
+                                        <input type="text" class="form-control" name="ap_P" required value="<?php echo $this->resultado_docente['Apellido_paterno'] ;?>">
                                     </div>
                                     <div class="col-6">
                                         <label>Apellido materno</label>
-                                        <input type="text" class="form-control" name="ap_M" value="<?php echo $this->resultado_docente['Apellido_materno'] ;?>">
+                                        <input type="text" class="form-control" name="ap_M" required value="<?php echo $this->resultado_docente['Apellido_materno'] ;?>">
                                     </div>
                                     <div class="col-6">
                                         <label>Estatus</label>
@@ -232,7 +232,7 @@
                             </div>
                             <div class="col-6">
                                 <label>Fecha de nacimiento</label>
-                                <input type="date" class="form-control" name="nacimiento" value="<?php echo $this->resultado_generales['Fecha_Nac'] ;?>">
+                                <input type="date" class="form-control" name="nacimiento" required value="<?php echo $this->resultado_generales['Fecha_Nac'] ;?>">
                             </div>
                             <div class="col-6">
                                 <label>Pais</label>
@@ -296,7 +296,7 @@
                             </div>
                             <div class="col-6">
                                 <label>CURP</label>
-                                <input type="text" class="form-control" name="curp" required value="<?php echo $this->resultado_generales['CURP'] ;?>">
+                                <input type="text" class="form-control" name="curp" required maxlength="18" value="<?php echo $this->resultado_generales['CURP'] ;?>">
                             </div>
                             <div class="col-6">
                                 <label>Estado civil</label>
@@ -320,7 +320,7 @@
                             </div>
                             <div class="col-6">
                                 <label>RFC</label>
-                                <input type="text" class="form-control" name="rfc" required value="<?php echo $this->resultado_generales['RFC'] ;?>">
+                                <input type="text" class="form-control" name="rfc" required maxlength="13" value="<?php echo $this->resultado_generales['RFC'] ;?>">
                             </div>
                             <div class="col-6">
                                 <label>Grado</label>

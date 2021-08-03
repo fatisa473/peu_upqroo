@@ -148,7 +148,7 @@
                         <div class="card">
                             <div class="card-body mt-1">
                                 <a href="<?php echo URL;?>perfil_administrador/agregar_alumno">
-                                    <img src="<?php echo URL;?>public/assets/img/datos.png" class="img-fluid" width="100" height="100" align="center">
+                                    <img src="<?php echo URL;?>public/assets/img/alumno.png" class="img-fluid" width="100" height="100" align="center">
                                     <p></p>
                                 </a>
                                 <h4 class="card-title mt-4">Alumno</h4>
@@ -159,7 +159,7 @@
                         <div class="card">
                             <div class="card-body mt-1">
                                 <a href="<?php echo URL;?>perfil_administrador/agregar_docente">
-                                    <img src="<?php echo URL;?>public/assets/img/contacto.png" class="img-fluid" width="100" height="100" align="center">
+                                    <img src="<?php echo URL;?>public/assets/img/docente.png" class="img-fluid" width="100" height="100" align="center">
                                     <p></p>
                                 </a>
                                 <h4 class="card-title mt-4">Docente</h4>
@@ -170,7 +170,7 @@
                         <div class="card">
                             <div class="card-body mt-1">
                                 <a href="<?php echo URL;?>perfil_administrador/agregar_administrativo">
-                                    <img src="<?php echo URL;?>public/assets/img/datos_laborales.png" class="img-fluid" width="100" height="100"
+                                    <img src="<?php echo URL;?>public/assets/img/administrativo.png" class="img-fluid" width="100" height="100"
                                      align="center">
                                     <p></p>
                                 </a>
@@ -182,7 +182,7 @@
                         <div class="card">
                             <div class="card-body mt-1">
                                 <a href="<?php echo URL;?>perfil_administrador/agregar_director">
-                                    <img src="<?php echo URL;?>public/assets/img/documentos.png" class="img-fluid" width="100" height="100" align="center">
+                                    <img src="<?php echo URL;?>public/assets/img/director.png" class="img-fluid" width="100" height="100" align="center">
                                     <p></p>
                                 </a>
                                 <h4 class="card-title mt-4">Director</h4>
